@@ -15,18 +15,13 @@ const filterObj = (obj, ...allowedFields) => {
 // ROUTE HANDLERS - USERS
 //////////////////////////////////////////
 
-exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-
-  res.status(200).json({
-    status: 'success',
-    results: users.length,
-    data: {
-      users,
-    },
-  });
-});
-
+exports.getAllUsers = factory.getAll(User);
+//////////////////////////////////////////
+exports.getSingleUser = factory.getOne(User);
+//////////////////////////////////////////
+exports.updateUser = factory.updateOne(User);
+//////////////////////////////////////////
+exports.deleteUser = factory.deleteOne(User);
 //////////////////////////////////////////
 
 exports.updateMe = catchAsync(async (req, res, next) => {
@@ -65,17 +60,3 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
-
-//////////////////////////////////////////
-
-exports.getSingleUser = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'This route is not yet defined!',
-  });
-};
-
-//////////////////////////////////////////
-exports.updateUser = factory.updateOne(User);
-//////////////////////////////////////////
-exports.deleteUser = factory.deleteOne(User);
