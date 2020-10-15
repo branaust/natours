@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
+<<<<<<< HEAD
       defaultSrc: ["'self'", 'data:', 'blob:'],
       baseUri: ["'self'"],
       fontSrc: ["'self'", 'https:', 'data:'],
@@ -46,6 +47,13 @@ app.use(
       imgSrc: ["'self'", 'data:', 'blob:'],
       connectSrc: ["'self'", 'blob:', 'https://*.mapbox.com'],
       upgradeInsecureRequests: [],
+=======
+      defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
+      baseUri: ["'self'"],
+      fontSrc: ["'self'", 'https:', 'http:', 'data:'],
+      scriptSrc: ["'self'", 'https:', 'http:', 'blob:'],
+      styleSrc: ["'self'", 'https:', 'http:', 'unsafe-inline'],
+>>>>>>> 111b40094114dcfd50aeef886908293c9fb0400a
     },
   })
 );
