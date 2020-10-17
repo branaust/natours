@@ -6,13 +6,19 @@ const login = async (email, password) => {
       method: 'POST',
       url: '/api/v1/users/login',
       data: {
-        email: email,
-        password: password,
+        email,
+        password,
       },
     });
-    console.log(res);
+
+    if (res.data.status === 'success') {
+      alert('Logged in successfully!');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
   } catch (err) {
-    console.log(err);
+    alert(err.response.data.message);
   }
 };
 
