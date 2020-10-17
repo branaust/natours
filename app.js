@@ -32,14 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set security HTTP headers
 
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
-      baseUri: ["'self'"],
-      fontSrc: ["'self'", 'https:', 'http:', 'data:'],
-      scriptSrc: ["'self'", 'https:', 'http:', 'blob:'],
-      styleSrc: ["'self'", 'https:', 'http:', "'unsafe-inline'"],
-    },
+  helmet({
+    contentSecurityPolicy: false,
   })
 );
 
