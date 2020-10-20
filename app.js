@@ -62,6 +62,7 @@ app.use(
     limit: '10kb',
   })
 );
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
@@ -70,11 +71,11 @@ app.use(mongoSanitize());
 // Data sanitization against XSS
 app.use(xss());
 
-// Prevent paramater pollution
+// Prevent parameter pollution
 app.use(
   hpp({
     whitelist: [
-      'duaration',
+      'duration',
       'ratingsQuantity',
       'ratingsAverage',
       'maxGroupSize',
@@ -84,19 +85,14 @@ app.use(
   })
 );
 
-app.use(globalErrorHandler);
-
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   console.log(req.cookies);
-
   next();
 });
 
-//////////////////////////////////////////
-// ROUTES
-//////////////////////////////////////////
+// 3) ROUTES
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
