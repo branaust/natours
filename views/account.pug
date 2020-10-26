@@ -6,6 +6,7 @@ mixin navItem(link, text, icon, active)
             svg
                 use(xlink:href=`img/icons.svg#icon-${icon}`)
             | #{text}
+            
 block content
   main.main
     .user-view

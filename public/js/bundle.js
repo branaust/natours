@@ -8586,7 +8586,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// type = password || data
+// type is either 'password' or 'data'
 var updateSettings = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, type) {
     var url, res;
@@ -8595,7 +8595,7 @@ var updateSettings = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            url = type === 'password' ? 'http://localhost:8000/api/v1/users/updateMyPassword' : 'http://localhost:8000/api/v1/users/updateMe';
+            url = type === 'password' ? 'localhost:8000/api/v1/users/updateMyPassword' : 'localhost:8000/api/v1/users/updateMe';
             _context.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
@@ -8607,7 +8607,7 @@ var updateSettings = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " updated successfully"));
+              (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " updated successfully!"));
             }
 
             _context.next = 11;
@@ -8913,18 +8913,15 @@ if (mapBox) {
   (0, _mapbox.displayMap)(locations);
 }
 
-if (loginForm) {
-  loginForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    (0, _login.login)(email, password);
-  });
-}
-
+if (loginForm) loginForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
+  (0, _login.login)(email, password);
+});
 if (logOutBtn) logOutBtn.addEventListener('click', _login.logout);
 if (userDataForm) userDataForm.addEventListener('submit', function (e) {
-  e.preventDefault;
+  e.preventDefault();
   var name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
   (0, _updateSettings.updateSettings)({
@@ -8939,7 +8936,7 @@ if (userPasswordForm) userPasswordForm.addEventListener('submit', /*#__PURE__*/f
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            e.preventDefault;
+            e.preventDefault();
             document.querySelector('.btn--save-password').textContent = 'Updating...';
             passwordCurrent = document.getElementById('password-current').value;
             password = document.getElementById('password').value;
@@ -8952,7 +8949,7 @@ if (userPasswordForm) userPasswordForm.addEventListener('submit', /*#__PURE__*/f
             }, 'password');
 
           case 7:
-            document.querySelector('.btn--save-password').textContent = 'Save Password';
+            document.querySelector('.btn--save-password').textContent = 'Save password';
             document.getElementById('password-current').value = '';
             document.getElementById('password').value = '';
             document.getElementById('password-confirm').value = '';
